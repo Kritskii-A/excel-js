@@ -1,0 +1,30 @@
+{
+  "name": "excel-js",
+  "version": "1.0.0",
+  "description": "Pure JavaScript Excel Application",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kritskii-A/excel-js.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "excel"
+  ],
+  "author": "Aleksandr Kritskii <kritskii-a@bk.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kritskii-A/excel-js/issues"
+  },
+  "homepage": "https://github.com/Kritskii-A/excel-js#readme",
+  "devDependencies": {
+    "webpack": "^5.10.2",
+    "webpack-cli": "^4.2.0"
+  }
+}
