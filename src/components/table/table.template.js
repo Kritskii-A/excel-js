@@ -3,9 +3,9 @@ const CODES = {
   Z: 90,
 };
 
-function createCell() {
+function toCell() {
   return `
-    <div class="cell" contenteditable>B1</div>
+    <div class="cell" contenteditable></div>
   `;
 }
 
@@ -15,10 +15,10 @@ function toColumn(col) {
   `;
 }
 
-function createRow(content) {
+function createRow(index, content) {
   return `
     <div class="row">
-      <div class="row-info">${content + 1}</div>
+      <div class="row-info">${index ? index : ""}</div>
       <div class="row-data">${content}</div>
     </div>
   `;
@@ -38,10 +38,15 @@ export function createTable(rowsCount = 15) {
     .map(toColumn)
     .join(""); // соединяем в строчку
 
-  rows.push(createRow(cols)); // делаем шапку excel
+  rows.push(createRow(null, cols)); // делаем шапку excel
 
   for (let i = 0; i < rowsCount; i++) {
-    rows.push(createRow(i));
+    const cells = new Array(colsCount)
+      .fill("") //  заполняем пустой строчкой
+      .map(toCell) // формируем
+      .join(""); // преобразовываем в строку
+
+    rows.push(createRow(i + 1, cells));
   }
 
   return rows.join(""); //  формирует в HTML
