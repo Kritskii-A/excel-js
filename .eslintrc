@@ -5,6 +5,14 @@
     "browser": true,
     "node": true
   },
-  "rules": {},
+  "rules": {
+    "require-jsdoc": "off",
+    "object-curly-spacing": "off",
+    "quotes": "off",
+    "operator-linebreak": "off",
+    "linebreak-style": "off",
+    "indent": "off",
+    "max-len": "off"
+  },
   "extends": ["eslint:recommended", "google"]
 }
