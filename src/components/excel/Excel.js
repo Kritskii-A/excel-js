@@ -1,40 +1,32 @@
-import { $ } from "@core/dom";
+import {$} from '@core/dom'
 
 export class Excel {
   constructor(selector, options) {
-    this.$el = $(selector);
-    this.components = options.components || [];
+    this.$el = $(selector)
+    this.components = options.components || []
   }
 
   getRoot() {
-    const $root = $.create("div", "excel");
+    const $root = $.create('div', 'excel')
 
-    this.components = this.components.map((Component) => {
-      // const $el = document.createElement("div");
-      // $el.classList.add(Component.className);
-
-      const $el = $.create("div", Component.className);
-      const component = new Component($el);
-      //  DEBUG
+    this.components = this.components.map(Component => {
+      const $el = $.create('div', Component.className)
+      const component = new Component($el)
+      // // DEBUG
       // if (component.name) {
-      //   window["c" + component.name] = component;
+      //   window['c' + component.name] = component
       // }
+      $el.html(component.toHTML())
+      $root.append($el)
+      return component
+    })
 
-      $el.html(component.toHTML());
-      $root.append($el);
-      return component;
-    });
-
-    return $root;
+    return $root
   }
 
   render() {
-    //  afterbegin, afterend, beforeend, beforebegin
-    //  this.$el.insertAdjacentHTML("afterbegin", `<h1>Test</h1>`);
-    //  или
-    //  const node = document.createElement("h1");
-    //  node.textContent = "test";
-    this.$el.append(this.getRoot());
-    this.components.forEach((component) => component.init());
+    this.$el.append(this.getRoot())
+
+    this.components.forEach(component => component.init())
   }
 }
