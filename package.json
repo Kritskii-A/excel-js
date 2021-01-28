@@ -10,19 +10,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vladilenm/excel-course.git"
+    "url": "git+https://github.com/Kritskii-A/excel-js.git"
   },
   "keywords": [
     "js",
     "javascript",
     "excel"
   ],
-  "author": "Vladilen Minin <vladilen.minin@gmail.com>",
+  "author": "Aleksandr Kritskii <kritskii-a@bk.ru>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vladilenm/excel-course/issues"
+    "url": "https://github.com/Kritskii-A/excel-js/issues"
   },
-  "homepage": "https://github.com/vladilenm/excel-course#readme",
+  "homepage": "https://github.com/Kritskii-A/excel-js#readme",
   "private": true,
   "browserslist": "> 0.25%, not dead",
   "devDependencies": {
