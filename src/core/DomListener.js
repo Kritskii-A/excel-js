@@ -12,18 +12,18 @@ export class DomListener {
   initDOMListeners() {
     this.listeners.forEach((listener) => {
       const method = getMethodName(listener);
-      //  проверка на наличие метода
       if (!this[method]) {
+        const name = this.name || "";
         throw new Error(
-          `Method ${method} is not implemented in ${this.name} Component`
+          `Method ${method} is not implemented in ${name} Component`
         );
       }
-      //  куда бы не передавали - теперь всегда будет со своим контекстом
       this[method] = this[method].bind(this);
-      //  тоже самое, что и addEventListener
+      // Тоже самое что и addEventListener
       this.$root.on(listener, this[method]);
     });
   }
+
   removeDOMListeners() {
     this.listeners.forEach((listener) => {
       const method = getMethodName(listener);
@@ -32,6 +32,7 @@ export class DomListener {
   }
 }
 
+// input => onInput
 function getMethodName(eventName) {
   return "on" + capitalize(eventName);
 }

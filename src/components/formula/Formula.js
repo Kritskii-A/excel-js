@@ -12,17 +12,17 @@ export class Formula extends ExcelComponent {
 
   toHTML() {
     return `
-    <div class="info">fx</div>
-    <div class="input" contenteditable spellcheck="false"></div>
+      <div class="info">fx</div>
+      <div class="input" contenteditable spellcheck="false"></div>
     `;
   }
 
   onInput(event) {
     console.log(this.$root);
-    console.log("onInput Formula: ", event.target.textContent.trim());
+    console.log("Formula: onInput", event.target.textContent.trim());
   }
 
-  onClick(event) {
-    console.log("click");
+  onClick() {
+    console.log("mk");
   }
 }
