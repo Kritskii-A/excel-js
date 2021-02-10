@@ -3,11 +3,25 @@ const CODES = {
   Z: 90,
 };
 
-function toCell(_, col) {
+function toCell(row, col) {
   return `
-    <div class="cell" data-col="${col}" contenteditable></div>
+    <div 
+      class="cell" 
+      data-col="${col}" 
+      data-id="${row}:${col}" 
+      data-type="cell"
+      contenteditable
+    ></div>
   `;
 }
+
+// function toCell(row) {
+//   return function (_, col) {
+//     return `
+//     <div class="cell" data-col="${col}" data-row="${row}" contenteditable></div>
+//   `;
+//   };
+// }
 
 function toColumn(col, index) {
   return `
@@ -49,13 +63,14 @@ export function createTable(rowsCount = 15) {
 
   rows.push(createRow(null, cols)); // делаем шапку excel
 
-  for (let i = 0; i < rowsCount; i++) {
+  for (let row = 0; row < rowsCount; row++) {
     const cells = new Array(colsCount)
       .fill("") //  заполняем пустой строчкой
-      .map(toCell) // формируем
+      .map((_, col) => toCell(row, col)) // формируем
+      // .map(toCell(row))  //  способ изящнее
       .join(""); // преобразовываем в строку
 
-    rows.push(createRow(i + 1, cells));
+    rows.push(createRow(row + 1, cells));
   }
 
   return rows.join(""); //  формирует в HTML
