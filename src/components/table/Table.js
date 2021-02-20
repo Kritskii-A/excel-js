@@ -6,6 +6,7 @@ import {
   shouldResize,
   isCell,
   matrix,
+  nextSelector,
 } from "@/components/table/table.functions";
 import { TableSelection } from "@/components/table/TableSelection";
 
@@ -14,7 +15,7 @@ export class Table extends ExcelComponent {
 
   constructor($root) {
     super($root, {
-      listeners: ["mousedown"],
+      listeners: ["mousedown", "keydown"],
     });
   }
 
@@ -50,6 +51,30 @@ export class Table extends ExcelComponent {
       } else {
         this.selection.select($target);
       }
+    }
+  }
+
+  onKeydown(event) {
+    const keys = [
+      "Enter",
+      "Tab",
+      "ArrowLeft",
+      "ArrowUp",
+      "ArrowDown",
+      "ArrowRight",
+    ];
+
+    const { key } = event;
+
+    if (keys.includes(key) && !event.shiftKey) {
+      //  отменяем стандартное действие при нажатии
+      event.preventDefault();
+
+      //  текущие ячейки
+      const id = this.selection.current.id(true);
+
+      const $next = this.$root.find(nextSelector(key, id));
+      this.selection.select($next);
     }
   }
 }
