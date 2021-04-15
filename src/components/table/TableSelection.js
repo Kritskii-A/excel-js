@@ -22,7 +22,7 @@ export class TableSelection {
   }
 
   get selectedIds() {
-    return this.group.map(($el) => $el.id);
+    return this.group.map(($el) => $el.id());
   }
 
   selectGroup($group = []) {
